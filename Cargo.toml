@@ -1,0 +1,35 @@
+# Auto-generated from "Cargo.yml"
+[badges]
+[badges.maintenance]
+status = "actively-developed"
+
+[badges.travis-ci]
+repository = "najamelan/async_progress"
+
+[dependencies]
+futures-preview = "^0.3.0-alpha"
+
+[dev-dependencies]
+pretty_assertions = "^0.6"
+
+[features]
+external_doc = []
+
+[package]
+authors = ["Naja Melan <najamelan@autistici.org>"]
+categories = []
+documentation = "https://docs.rs/async_progress"
+edition = "2018"
+keywords = []
+license = "Unlicense"
+name = "async_progress"
+readme = "README.md"
+repository = "https://github.com/najamelan/async_progress"
+version = "0.1.0"
+
+[package.description]
+
+[package.metadata]
+[package.metadata.docs]
+[package.metadata.docs.rs]
+features = ["external_doc"]
