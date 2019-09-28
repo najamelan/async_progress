@@ -7,7 +7,10 @@ status = "actively-developed"
 repository = "najamelan/async_progress"
 
 [dependencies]
+future-parking_lot = "^0.3.2-alpha"
 futures-preview = "^0.3.0-alpha"
+log = "^0.4"
+pharos = "^0.4"
 
 [dev-dependencies]
 pretty_assertions = "^0.6"
@@ -18,6 +21,7 @@ external_doc = []
 [package]
 authors = ["Naja Melan <najamelan@autistici.org>"]
 categories = []
+description = "Create sync points across async tasks"
 documentation = "https://docs.rs/async_progress"
 edition = "2018"
 keywords = []
@@ -26,8 +30,6 @@ name = "async_progress"
 readme = "README.md"
 repository = "https://github.com/najamelan/async_progress"
 version = "0.1.0"
-
-[package.description]
 
 [package.metadata]
 [package.metadata.docs]

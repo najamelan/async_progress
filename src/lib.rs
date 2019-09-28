@@ -25,6 +25,13 @@
 )]
 
 
+mod progress;
+
+pub use
+{
+	progress::Progress,
+};
+
 
 // External dependencies
 //
@@ -32,16 +39,19 @@ mod import
 {
 	pub(crate) use
 	{
-		std :: {  } } ,
+		std :: { fmt, sync::Arc, any::type_name } ,
+		futures :: { lock::Mutex, SinkExt, executor::block_on } ,
+		pharos :: { Pharos, Observable, ObserveConfig, Events, Filter },
+		log     :: { trace } ,
 	};
 
 
-	#[ cfg( test ) ]
-	//
-	pub(crate) use
-	{
-		pretty_assertions :: { assert_eq } ,
-	};
+	// #[ cfg( test ) ]
+	// //
+	// pub(crate) use
+	// {
+	// 	pretty_assertions :: { assert_eq } ,
+	// };
 }
 
 
