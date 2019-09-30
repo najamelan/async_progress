@@ -40,7 +40,7 @@ mod import
 	pub(crate) use
 	{
 		std :: { fmt, sync::Arc, any::type_name } ,
-		futures :: { lock::Mutex, SinkExt, executor::block_on } ,
+		futures :: { lock::Mutex, SinkExt, StreamExt, executor::block_on } ,
 		pharos :: { Pharos, Observable, ObserveConfig, Events, Filter },
 		log     :: { trace } ,
 	};

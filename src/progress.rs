@@ -1,5 +1,12 @@
 use crate::import::*;
 
+
+/// A progress tracker.
+///
+/// You can call set_state and it will notify observers of the new state.
+///
+/// To wait for a specific state, you can call [`Progress::wait`].
+//
 #[ derive( Clone ) ]
 //
 pub struct Progress<State> where State: 'static + Clone + Send + Sync + Eq + fmt::Debug
@@ -10,6 +17,9 @@ pub struct Progress<State> where State: 'static + Clone + Send + Sync + Eq + fmt
 
 impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fmt::Debug
 {
+
+	/// Create a Progress with an initial state.
+	//
 	pub fn new( state: State ) -> Self
 	{
 		Self
@@ -19,6 +29,9 @@ impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fm
 		}
 	}
 
+
+	/// Set a new state. Observers will be notified.
+	//
 	pub async fn set_state( &self, new_state: State )
 	{
 		let mut pharos = self.pharos.lock().await;
@@ -31,9 +44,27 @@ impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fm
 	}
 
 
+	/// Create an event stream that will only fire for the given state.
+	//
 	pub fn wait( &self, state: State ) -> Events<State>
 	{
 		block_on( self.pharos.lock() ).observe( Filter::Closure( Box::new( move |s| s == &state ) ).into() ).expect( "observe" )
+	}
+
+
+	/// Create a future that will resolve when a certain state is next triggered.
+	//
+	pub async fn once( &self, state: State )
+	{
+		let evts =
+		{
+			self.pharos.lock().await
+
+				.observe( Filter::Closure( Box::new( move |s| s == &state ) ).into() )
+				.expect( "observe" )
+		};
+
+		let _ = evts.into_future().await;
 	}
 }
 
