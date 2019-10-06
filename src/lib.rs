@@ -39,10 +39,10 @@ mod import
 {
 	pub(crate) use
 	{
-		std :: { fmt, sync::Arc, any::type_name } ,
+		std     :: { fmt, sync::Arc, any::type_name, future::Future      } ,
 		futures :: { lock::Mutex, SinkExt, StreamExt, executor::block_on } ,
-		pharos :: { Pharos, Observable, ObserveConfig, Events, Filter },
-		log     :: { trace } ,
+		pharos  :: { Pharos, Observable, ObserveConfig, Events, Filter   } ,
+		log     :: { trace                                               } ,
 	};
 
 

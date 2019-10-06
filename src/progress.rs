@@ -54,17 +54,17 @@ impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fm
 
 	/// Create a future that will resolve when a certain state is next triggered.
 	//
-	pub async fn once( &self, state: State )
+	pub fn once( &self, state: State ) -> impl Future
 	{
 		let evts =
 		{
-			self.pharos.lock().await
+			block_on( self.pharos.lock() )
 
 				.observe( Filter::Closure( Box::new( move |s| s == &state ) ).into() )
 				.expect( "observe" )
 		};
 
-		let _ = evts.into_future().await;
+		async { let _ = evts.into_future().await; }
 	}
 }
 
