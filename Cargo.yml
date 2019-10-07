@@ -17,8 +17,8 @@ package:
   documentation : https://docs.rs/async_progress
   repository    : https://github.com/najamelan/async_progress
   readme        : README.md
-  keywords      : []
-  categories    : []
+  keywords      : [synchronization]
+  categories    : [asynchronous, concurrency, development-tools::testing]
   license       : Unlicense
   edition       : "2018"
 
