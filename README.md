@@ -66,8 +66,7 @@ This crate has `#![ forbid( unsafe_code ) ]`, but notably the futures library on
 It's important to understand that [`Progress`] uses _pharos_ to be observable, and that observers that subscribe after
 an event is triggered will not get that event.
 
-Therefor it's recommended to make all calls to [`Progress::once`], [`Progress::wait`] and [`Progress::observe`] be made
-before you start any work that might call [`Progress::set_state`]. You can then pass those futures to the tasks that need
+Therefor it's recommended to make all calls to [`Progress::once`], [`Progress::wait`] and [`Progress::observe`] before you start any work that might call [`Progress::set_state`]. You can then pass those futures to the tasks that need
 to await them. This also allows triggering events multiple times, which wouldn't be possible otherwise.
 
 Sometimes your next call will be pending, but you need to give green light to some other task to do some stuff. In general it's safe to call [`Progress::set_state`] before the call that will pend. Your pending call will be polled before the other task will observe the new state.

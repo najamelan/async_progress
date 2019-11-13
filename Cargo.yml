@@ -10,7 +10,7 @@ package:
   # - merge dev branch into master
   # - create git tag
   #
-  version       : 0.1.0
+  version       : 0.1.1
   name          : async_progress
   authors       : [ Naja Melan <najamelan@autistici.org> ]
   description   : Create sync points across async tasks
@@ -18,7 +18,7 @@ package:
   repository    : https://github.com/najamelan/async_progress
   readme        : README.md
   keywords      : [synchronization]
-  categories    : [asynchronous, concurrency, development-tools::testing]
+  categories    : [asynchronous, concurrency, "development-tools::testing"]
   license       : Unlicense
   edition       : "2018"
 
@@ -41,10 +41,10 @@ badges:
 
 dependencies:
 
-  futures-preview   : ^0.3.0-alpha
+  futures           : ^0.3
   pharos            : ^0.4
   log               : ^0.4
-  future-parking_lot: ^0.3.2-alpha
+  future-parking_lot: ^0.3
 
 
 dev-dependencies:
