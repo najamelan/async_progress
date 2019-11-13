@@ -1,6 +1,8 @@
 # async_progress - CHANGELOG
 
-## 0.0.0 - 0000-00-00
+## 0.1.0 - 2019-10-07
+
+- Initial release
 
 
 
