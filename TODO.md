@@ -1,4 +1,4 @@
 # Todo
 
-- switch to futures-util lib for mutex?
 - tests!
+- switch to futures-util lib for mutex?

@@ -68,7 +68,13 @@ impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fm
 	//
 	pub fn wait( &self, state: State ) -> Events<State>
 	{
-		block_on( self.pharos.lock() ).observe( Filter::Closure( Box::new( move |s| s == &state ) ).into() ).expect( "observe" )
+		block_on( async
+		{
+			let mut ph = self.pharos.lock().await;
+			let     cl = Filter::Closure( Box::new( move |s| s == &state ) );
+
+			ph.observe( cl.into() ).await.expect( "observe" )
+		})
 	}
 
 
@@ -89,10 +95,14 @@ impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fm
 	{
 		let evts =
 		{
-			block_on( self.pharos.lock() )
+			block_on( async
+			{
+				let mut ph = self.pharos.lock().await;
+				let     cl = Filter::Closure( Box::new( move |s| s == &state ) );
 
-				.observe( Filter::Closure( Box::new( move |s| s == &state ) ).into() )
-				.expect( "observe" )
+				ph.observe( cl.into() ).await.expect( "observe" )
+
+			})
 		};
 
 		async { let _ = evts.into_future().await; }
@@ -103,15 +113,19 @@ impl<State> Progress<State> where State: 'static + Clone + Send + Sync + Eq + fm
 
 impl<State> Observable<State> for Progress<State> where State: 'static + Clone + Send + Sync + Eq + fmt::Debug
 {
-	type Error = pharos::Error;
+	type Error = pharos::PharErr;
 
 	/// Avoid configuring pharos with a bounded channel of a low queue size. It is possible to create a
 	/// deadlock if the send in [`Progress::set_state`] returns pending and you call another method on [`Progress`]
 	/// that uses block_on, notably [`Progress::current`].
 	//
-	fn observe( &mut self, options: ObserveConfig<State> ) -> Result< Events<State>, Self::Error >
+	fn observe( &mut self, options: ObserveConfig<State> ) -> Observe< '_, State, Self::Error >
 	{
-		block_on( self.pharos.lock() ).observe( options )
+		async move
+		{
+			self.pharos.lock().await.observe( options ).await
+
+		}.boxed()
 	}
 }
 

@@ -6,14 +6,17 @@ status = "actively-developed"
 [badges.travis-ci]
 repository = "najamelan/async_progress"
 
+[build-dependencies]
+rustc_version = "^0.4"
+
 [dependencies]
 future-parking_lot = "^0.3"
 futures = "^0.3"
 log = "^0.4"
-pharos = "^0.4"
+pharos = "^0.5"
 
 [dev-dependencies]
-pretty_assertions = "^0.6"
+pretty_assertions = "^0.7"
 
 [features]
 external_doc = []
@@ -29,9 +32,11 @@ license = "Unlicense"
 name = "async_progress"
 readme = "README.md"
 repository = "https://github.com/najamelan/async_progress"
-version = "0.1.1"
+resolver = "2"
+version = "0.2.0"
 
 [package.metadata]
 [package.metadata.docs]
 [package.metadata.docs.rs]
-features = ["external_doc"]
+all-features = true
+targets = []

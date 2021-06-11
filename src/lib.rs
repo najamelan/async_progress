@@ -1,9 +1,6 @@
-// See: https://github.com/rust-lang/rust/issues/44732#issuecomment-488766871
-//
-#![cfg_attr( feature = "external_doc", feature(external_doc) )]
-#![cfg_attr( feature = "external_doc", doc(include = "../README.md"))]
-//!
-
+#![cfg_attr( nightly, feature(doc_cfg) )]
+#![cfg_attr( nightly, cfg_attr( nightly, doc = include_str!("../README.md") ))]
+#![doc = ""] // empty doc line to handle missing doc warning on stable.
 
 #![ doc    ( html_root_url = "https://docs.rs/async_progress" ) ]
 #![ deny   ( missing_docs                                     ) ]
@@ -40,8 +37,8 @@ mod import
 	pub(crate) use
 	{
 		std     :: { fmt, sync::Arc, any::type_name, future::Future      } ,
-		futures :: { lock::Mutex, SinkExt, StreamExt, executor::block_on } ,
-		pharos  :: { Pharos, Observable, ObserveConfig, Events, Filter   } ,
+		futures :: { lock::Mutex, SinkExt, StreamExt, FutureExt, executor::block_on } ,
+		pharos  :: { Pharos, Observe, Observable, ObserveConfig, Events, Filter   } ,
 		log     :: { trace                                               } ,
 	};
 
