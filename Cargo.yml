@@ -2,15 +2,29 @@ package:
 
   # When releasing to crates.io:
   #
+  # - last check for all TODO, FIXME, expect, unwrap.
+  # - recheck log statements (informative, none left that were just for development, ...)
+  # - `cargo +nightly doc` and re-read and final polish of documentation.
+  #
   # - Update CHANGELOG.md.
   # - Update version numbers in Cargo.yml, Cargo.toml, install section of readme.
-  # - verify CI result
-  # - test dependent crates
-  # - cargo publish
-  # - merge dev branch into master
-  # - create git tag
   #
-  version       : 0.1.1
+  # - `touch **.rs && cargo clippy --tests --examples --benches --all-features`
+  # - `cargo update`
+  # - `cargo udeps --all-targets --all-features`
+  # - `cargo audit`
+  # - `cargo crev crate verify --show-all --recursive` and review.
+  # - 'cargo test --all-targets --all-features'
+  #
+  # - push dev and verify CI result
+  # - `cargo test` on dependent crates
+  #
+  # - cargo publish
+  # - `git checkout master && git merge dev --no-ff`
+  # - `git tag x.x.x` with version number.
+  # - `git push && git push --tags`
+  #
+  version       : 0.2.0
   name          : async_progress
   authors       : [ Naja Melan <najamelan@autistici.org> ]
   description   : Create sync points across async tasks
@@ -21,6 +35,7 @@ package:
   categories    : [asynchronous, concurrency, "development-tools::testing"]
   license       : Unlicense
   edition       : "2018"
+  resolver      : "2"
 
   metadata:
     docs:
@@ -43,14 +58,15 @@ badges:
 dependencies:
 
   futures           : ^0.3
-  pharos            : ^0.4
+  pharos            : ^0.5
   log               : ^0.4
   future-parking_lot: ^0.3
 
 
 dev-dependencies:
 
-  pretty_assertions   : ^0.6
+  pretty_assertions   : ^0.7
+
 
 build-dependencies:
 
