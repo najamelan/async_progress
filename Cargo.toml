@@ -6,6 +6,9 @@ status = "actively-developed"
 [badges.travis-ci]
 repository = "najamelan/async_progress"
 
+[build-dependencies]
+rustc_version = "^0.4"
+
 [dependencies]
 future-parking_lot = "^0.3"
 futures = "^0.3"
@@ -34,4 +37,5 @@ version = "0.1.1"
 [package.metadata]
 [package.metadata.docs]
 [package.metadata.docs.rs]
-features = ["external_doc"]
+all-features = true
+targets = []
