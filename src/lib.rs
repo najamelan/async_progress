@@ -1,6 +1,5 @@
-#![cfg_attr( nightly, feature(doc_cfg) )]
-#![cfg_attr( nightly, cfg_attr( nightly, doc = include_str!("../README.md") ))]
-#![doc = ""] // empty doc line to handle missing doc warning on stable.
+#![ cfg_attr( nightly, feature(doc_cfg) ) ]
+#![ doc = include_str!("../README.md") ]
 
 #![ doc    ( html_root_url = "https://docs.rs/async_progress" ) ]
 #![ deny   ( missing_docs                                     ) ]
@@ -36,10 +35,10 @@ mod import
 {
 	pub(crate) use
 	{
-		std     :: { fmt, sync::Arc, any::type_name, future::Future      } ,
+		std     :: { fmt, sync::Arc, any::type_name, future::Future                 } ,
 		futures :: { lock::Mutex, SinkExt, StreamExt, FutureExt, executor::block_on } ,
-		pharos  :: { Pharos, Observe, Observable, ObserveConfig, Events, Filter   } ,
-		log     :: { trace                                               } ,
+		pharos  :: { Pharos, Observe, Observable, ObserveConfig, Events, Filter     } ,
+		log     :: { trace                                                          } ,
 	};
 
 
