@@ -3,8 +3,16 @@
 
 ## [Unreleased]
 
-  [Unreleased]: https://github.com/najamelan/async_progress/compare/0.2.0...dev
+  [Unreleased]: https://github.com/najamelan/async_progress/compare/0.2.1...dev
 
+
+## [0.2.1] - 23-09-06
+
+  [0.2.1]: https://github.com/najamelan/async_progress/compare/0.2.0...0.2.1
+  
+### Fixed
+
+  - Removed unused dependency that had a CVE.
 
 
 ## [0.2.0] - 21-06-11

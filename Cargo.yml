@@ -24,7 +24,7 @@ package:
   # - `git tag x.x.x` with version number.
   # - `git push && git push --tags`
   #
-  version       : 0.2.0
+  version       : 0.2.1
   name          : async_progress
   authors       : [ Naja Melan <najamelan@autistici.org> ]
   description   : Create sync points across async tasks
@@ -60,12 +60,11 @@ dependencies:
   futures           : ^0.3
   pharos            : ^0.5
   log               : ^0.4
-  future-parking_lot: ^0.3
 
 
 dev-dependencies:
 
-  pretty_assertions   : ^0.7
+  pretty_assertions   : ^1
 
 
 build-dependencies:

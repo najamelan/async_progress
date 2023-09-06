@@ -8,7 +8,7 @@
 
 > Create synchronization points between concurrent async tasks.
 
-Sometimes, especially in order to test async code, we need code to run in a specific order. Making certain tasks wait on things that happen in others. You can create such synchronization by creating (oneshot) channels. When you have more than 2 steps in your flow, channels quickly become quite unwieldy to keep track of and to name. _async_progress_ allows you to create a state enum with steps and simply trigger them with [`Progress::set_state`] and wait on them with [`Progress::once`] or [`Progress::wait`].
+Sometimes, especially in order to test async code, we need code to run in a specific order. Making certain tasks wait on things that happen in others. You can create such synchronization by creating (oneshot) channels. When you have more than 2 steps in your flow, channels quickly become unwieldy to keep track of and to name. _async_progress_ allows you to create a state enum with steps and simply trigger them with [`Progress::set_state`] and wait on them with [`Progress::once`] or [`Progress::wait`].
 
 __Warning:__ Since this is a convenience crate for testing, I haven't yet been bothered to write tests for it. Some things could be buggy.
 
