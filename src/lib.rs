@@ -26,6 +26,7 @@ mod progress;
 pub use
 {
 	progress::Progress,
+	pharos::Events,
 };
 
 
